@@ -2,8 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./App.css";
 import Home from "./Components/Home/Home";
-import LoginForm from "./Components/Login/Login";
-import RegisterForm from "./Components/Register/Register";
+import LoginForm from "./Components/AuthenticationForms/Login";
+import RegisterForm from "./Components/AuthenticationForms/Register";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 function App() {

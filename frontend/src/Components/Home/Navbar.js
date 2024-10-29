@@ -46,8 +46,9 @@ const Navbar = () => {
             type="search"
             placeholder="Search"
             aria-label="Search"
+            style={{ minWidth: 400 }}
           />
-          <button className="btn btn-outline-success" type="submit">
+          <button className="btn btn-warning" type="submit">
             Search
           </button>
         </form>
