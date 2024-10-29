@@ -1,0 +1,20 @@
+.category-presentation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: red;
+}
+
+.card-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  background-color: green;
+}
+
+.card-img {
+  width: 150px;
+  height: auto;
+}
