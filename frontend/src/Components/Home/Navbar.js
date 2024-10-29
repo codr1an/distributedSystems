@@ -17,7 +17,7 @@ const Navbar = () => {
       </button>
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav mr-auto">
+        <ul className="navbar-nav mr-auto ml-auto">
           <li className="nav-item">
             <a className="nav-link" href="/">
               Phones
@@ -46,41 +46,50 @@ const Navbar = () => {
             type="search"
             placeholder="Search"
             aria-label="Search"
+            style={{ minWidth: 400 }}
           />
-          <button className="btn btn-outline-success" type="submit">
+          <button className="btn btn-warning" type="submit">
             Search
           </button>
         </form>
 
-        <ul className="navbar-nav ml-auto">
-          <li className="nav-item dropdown">
+        <ul className="navbar-nav ">
+          <div class="dropdown-center">
             <a
-              className="nav-link dropdown-toggle"
+              class="btn btn-dark dropdown-toggle"
               href="/"
-              id="navbarDropdown"
               role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
+              data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              Account
+              <i class="bi bi-person"> Account</i>
             </a>
-            <div
-              className="dropdown-menu dropdown-menu-right"
-              aria-labelledby="navbarDropdown"
+
+            <ul
+              class="dropdown-menu dropdown-menu-dark"
+              style={{ marginTop: 10, marginLeft: -20 }}
             >
-              <a className="dropdown-item" href="/">
-                Action
-              </a>
-              <a className="dropdown-item" href="/">
-                Another action
-              </a>
-              <div className="dropdown-divider"></div>
-              <a className="dropdown-item" href="/">
-                Something else here
-              </a>
-            </div>
-          </li>
+              <li>
+                <a class="dropdown-item" href="/login">
+                  Login
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/register">
+                  Register
+                </a>
+              </li>
+            </ul>
+          </div>
+          <button
+            type="button"
+            class="btn btn-dark"
+            style={{
+              marginRight: 20,
+            }}
+          >
+            <i class="bi bi-cart"> Shopping Cart</i>
+          </button>
         </ul>
       </div>
     </nav>
