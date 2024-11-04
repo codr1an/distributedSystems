@@ -1,0 +1,48 @@
+.category-presentation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 25%,
+      rgba(255, 255, 255, 1) 90%
+    ),
+    url("../../assets/christmas.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 95%;
+  height: 330px;
+  justify-content: space-between;
+  margin-top: 100px;
+}
+
+.card-pair {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 330px;
+}
+
+.card-pair h1 {
+  font-size: 30px;
+  margin-top: 10px;
+}
+
+.card-title {
+  font-size: 16px;
+  text-align: center;
+}
+
+.card-img-top {
+  margin-top: 10px;
+  height: 100px;
+  width: 100px;
+}
