@@ -10,49 +10,153 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <div class="category-presentation">
-        <div class="card-wrapper">
-          <div class="card">
-            <div class="product-image">
-              <img src={phoneImage} class="card-img-top" alt="..." />
+      <div className="category-presentation">
+        <div
+          id="productCarousel"
+          className="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <div className="slide">
+                <div className="card-wrapper">
+                  <div className="card">
+                    <div className="product-image">
+                      <img
+                        src={phoneImage}
+                        className="card-img-top"
+                        alt="iPhone"
+                      />
+                      <div className="price-display">asd</div>
+                    </div>
+
+                    <h5 className="card-title">iPhone</h5>
+                    <p className="card-text">
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </p>
+                    <a href="/" className="btn btn-primary">
+                      To product
+                    </a>
+                  </div>
+                  <div className="card">
+                    <div className="product-image">
+                      <img
+                        src={laptopImage}
+                        className="card-img-top"
+                        alt="Laptop"
+                      />
+                    </div>
+                    <h5 className="card-title">Laptop</h5>
+                    <p className="card-text">
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </p>
+                    <a href="/" className="btn btn-primary">
+                      To product
+                    </a>
+                  </div>
+                  <div className="card">
+                    <div className="product-image">
+                      <img
+                        src={monitorImage}
+                        className="card-img-top"
+                        alt="Monitor"
+                      />
+                    </div>
+                    <h5 className="card-title">Monitor</h5>
+                    <p className="card-text">
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </p>
+                    <button class="go-to-button" href="/">
+                      {">"} To product
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <h5 class="card-title">iPhone</h5>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <a href="/" class="btn btn-primary">
-              To product
-            </a>
-          </div>
-          <div class="card">
-            <div class="product-image">
-              <img src={laptopImage} class="card-img-top" alt="..." />
+            <div className="carousel-item">
+              <div className="slide">
+                <div className="card-wrapper">
+                  <div className="card">
+                    <div className="product-image">
+                      <img src={tvImage} className="card-img-top" alt="TV" />
+                    </div>
+                    <h5 className="card-title">TV</h5>
+                    <p className="card-text">
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </p>
+                    <a href="/" className="btn btn-primary">
+                      To product
+                    </a>
+                  </div>
+                  <div className="card">
+                    <div className="product-image">
+                      <img
+                        src={phoneImage}
+                        className="card-img-top"
+                        alt="iPhone"
+                      />
+                    </div>
+                    <h5 className="card-title">iPhone</h5>
+                    <p className="card-text">
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </p>
+                    <a href="/" className="btn btn-primary">
+                      To product
+                    </a>
+                  </div>
+                  <div className="card">
+                    <div className="product-image">
+                      <img
+                        src={laptopImage}
+                        className="card-img-top"
+                        alt="Laptop"
+                      />
+                    </div>
+                    <h5 className="card-title">Laptop</h5>
+                    <p className="card-text">
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </p>
+                    <a href="/" className="btn btn-outline-dark">
+                      {">"} See product
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
-            <h5 class="card-title">iPhone</h5>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <a href="/" class="btn btn-primary">
-              To product
-            </a>
-          </div>
-          <div class="card">
-            <div class="product-image">
-              <img src={laptopImage} class="card-img-top" alt="..." />
-            </div>
-            <h5 class="card-title">iPhone</h5>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <a href="/" class="btn btn-outline-dark">
-              To product
-            </a>
           </div>
         </div>
+
+        <button
+          className="carousel-control-prev"
+          type="button"
+          data-bs-target="#productCarousel"
+          data-bs-slide="prev"
+        >
+          <span
+            className="carousel-control-prev-icon"
+            aria-hidden="true"
+          ></span>
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button
+          className="carousel-control-next"
+          type="button"
+          data-bs-target="#productCarousel"
+          data-bs-slide="next"
+        >
+          <span
+            className="carousel-control-next-icon"
+            aria-hidden="true"
+          ></span>
+          <span className="visually-hidden">Next</span>
+        </button>
       </div>
     </div>
   );
