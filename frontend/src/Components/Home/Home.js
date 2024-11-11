@@ -10,185 +10,153 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <div class="category-presentation">
-        <div class="card-wrapper">
-          <div class="card-pair">
-            <h1>Phones</h1>
-            <div
-              class="row row-cols-1 row-cols-md-2 g-1"
-              style={{ width: "19rem" }}
-            >
-              <div class="col">
-                <div class="card h-100 border-white">
-                  <img
-                    src={phoneImage}
-                    class="card-img-top mx-auto"
-                    alt="..."
-                  />
-                  <h5 class="card-title">iPhone X</h5>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card h-100 border-white">
-                  <img
-                    src={phoneImage}
-                    class="card-img-top mx-auto"
-                    alt="..."
-                  />
-                  <h5 class="card-title">Samsung S20</h5>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card h-100 border-white">
-                  <img
-                    src={phoneImage}
-                    class="card-img-top mx-auto"
-                    alt="..."
-                  />
-                  <h5 class="card-title">Xiaomi Beijing</h5>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card h-100 border-white">
-                  <img
-                    src={phoneImage}
-                    class="card-img-top mx-auto"
-                    alt="..."
-                  />
-                  <h5 class="card-title">Huawei Milbei</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-pair">
-            <h1>Tvs</h1>
-            <div
-              class="row row-cols-1 row-cols-md-2 g-1"
-              style={{ width: "19rem" }}
-            >
-              <div class="col">
-                <div class="card h-100 border-white">
-                  <img src={tvImage} class="card-img-top mx-auto" alt="..." />
-                  <h5 class="card-title">iPhone X</h5>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card h-100 border-white">
-                  <img src={tvImage} class="card-img-top mx-auto" alt="..." />
-                  <h5 class="card-title">Samsung S20</h5>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card h-100 border-white">
-                  <img src={tvImage} class="card-img-top mx-auto" alt="..." />
-                  <h5 class="card-title">Xiaomi Beijing</h5>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card h-100 border-white">
-                  <img src={tvImage} class="card-img-top mx-auto" alt="..." />
-                  <h5 class="card-title">Huawei Milbei</h5>
+      <div className="category-presentation">
+        <div
+          id="productCarousel"
+          className="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <div className="slide">
+                <div className="card-wrapper">
+                  <div className="card">
+                    <div className="product-image">
+                      <img
+                        src={phoneImage}
+                        className="card-img-top"
+                        alt="iPhone"
+                      />
+                      <div className="price-display">asd</div>
+                    </div>
+
+                    <h5 className="card-title">iPhone</h5>
+                    <p className="card-text">
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </p>
+                    <a href="/" className="btn btn-primary">
+                      To product
+                    </a>
+                  </div>
+                  <div className="card">
+                    <div className="product-image">
+                      <img
+                        src={laptopImage}
+                        className="card-img-top"
+                        alt="Laptop"
+                      />
+                    </div>
+                    <h5 className="card-title">Laptop</h5>
+                    <p className="card-text">
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </p>
+                    <a href="/" className="btn btn-primary">
+                      To product
+                    </a>
+                  </div>
+                  <div className="card">
+                    <div className="product-image">
+                      <img
+                        src={monitorImage}
+                        className="card-img-top"
+                        alt="Monitor"
+                      />
+                    </div>
+                    <h5 className="card-title">Monitor</h5>
+                    <p className="card-text">
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </p>
+                    <button class="go-to-button" href="/">
+                      {">"} To product
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="card-pair">
-            <h1>Monitors</h1>
-            <div
-              class="row row-cols-1 row-cols-md-2 g-1"
-              style={{ width: "19rem" }}
-            >
-              <div class="col">
-                <div class="card h-100 border-white">
-                  <img
-                    src={monitorImage}
-                    class="card-img-top mx-auto"
-                    alt="..."
-                  />
-                  <h5 class="card-title">iPhone X</h5>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card h-100 border-white">
-                  <img
-                    src={monitorImage}
-                    class="card-img-top mx-auto"
-                    alt="..."
-                  />
-                  <h5 class="card-title">Samsung S20</h5>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card h-100 border-white">
-                  <img
-                    src={monitorImage}
-                    class="card-img-top mx-auto"
-                    alt="..."
-                  />
-                  <h5 class="card-title">Xiaomi Beijing</h5>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card h-100 border-white">
-                  <img
-                    src={monitorImage}
-                    class="card-img-top mx-auto"
-                    alt="..."
-                  />
-                  <h5 class="card-title">Huawei Milbei</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-pair">
-            <h1>Laptops</h1>
-            <div
-              class="row row-cols-1 row-cols-md-2 g-1"
-              style={{ width: "19rem" }}
-            >
-              <div class="col">
-                <div class="card h-100 border-white">
-                  <img
-                    src={laptopImage}
-                    class="card-img-top mx-auto"
-                    alt="..."
-                  />
-                  <h5 class="card-title">iPhone X</h5>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card h-100 border-white">
-                  <img
-                    src={laptopImage}
-                    class="card-img-top mx-auto"
-                    alt="..."
-                  />
-                  <h5 class="card-title">Samsung S20</h5>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card h-100 border-white">
-                  <img
-                    src={laptopImage}
-                    class="card-img-top mx-auto"
-                    alt="..."
-                  />
-                  <h5 class="card-title">Xiaomi Beijing</h5>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card h-100 border-white">
-                  <img
-                    src={laptopImage}
-                    class="card-img-top mx-auto"
-                    alt="..."
-                  />
-                  <h5 class="card-title">Huawei Milbei</h5>
+
+            <div className="carousel-item">
+              <div className="slide">
+                <div className="card-wrapper">
+                  <div className="card">
+                    <div className="product-image">
+                      <img src={tvImage} className="card-img-top" alt="TV" />
+                    </div>
+                    <h5 className="card-title">TV</h5>
+                    <p className="card-text">
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </p>
+                    <a href="/" className="btn btn-primary">
+                      To product
+                    </a>
+                  </div>
+                  <div className="card">
+                    <div className="product-image">
+                      <img
+                        src={phoneImage}
+                        className="card-img-top"
+                        alt="iPhone"
+                      />
+                    </div>
+                    <h5 className="card-title">iPhone</h5>
+                    <p className="card-text">
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </p>
+                    <a href="/" className="btn btn-primary">
+                      To product
+                    </a>
+                  </div>
+                  <div className="card">
+                    <div className="product-image">
+                      <img
+                        src={laptopImage}
+                        className="card-img-top"
+                        alt="Laptop"
+                      />
+                    </div>
+                    <h5 className="card-title">Laptop</h5>
+                    <p className="card-text">
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </p>
+                    <a href="/" className="btn btn-outline-dark">
+                      {">"} See product
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        <button
+          className="carousel-control-prev"
+          type="button"
+          data-bs-target="#productCarousel"
+          data-bs-slide="prev"
+        >
+          <span
+            className="carousel-control-prev-icon"
+            aria-hidden="true"
+          ></span>
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button
+          className="carousel-control-next"
+          type="button"
+          data-bs-target="#productCarousel"
+          data-bs-slide="next"
+        >
+          <span
+            className="carousel-control-next-icon"
+            aria-hidden="true"
+          ></span>
+          <span className="visually-hidden">Next</span>
+        </button>
       </div>
     </div>
   );
