@@ -1,0 +1,30 @@
+#offersCarousel .carousel {
+  height: 100%;
+  width: 100%;
+}
+
+#offersCarousel {
+  width: 80%;
+  height: 100%;
+}
+
+#offersCarousel .carousel {
+  height: 100%;
+  width: 100%;
+}
+
+#offersCarousel .carousel-inner {
+  width: 90%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-size: cover;
+  display: block;
+}
+
+#offersCarousel .carousel {
+  height: 100%;
+  width: 100%;
+}
