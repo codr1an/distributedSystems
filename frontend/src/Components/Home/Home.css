@@ -48,13 +48,6 @@
   margin-top: 20px;
 }
 
-.carousel-control-prev,
-.carousel-control-next {
-  top: 63%;
-  bottom: auto;
-  background-color: pink;
-}
-
 .carousel-inner {
   width: 80%;
 }
@@ -87,29 +80,42 @@
   text-align: right;
 }
 
-.current-offers {
-  margin-top: 30px;
-  width: 90%;
-  height: 32%;
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .carousel {
   width: 90%;
   height: 66%;
 }
 
-.offers-carousel {
+#offersCarousel .carousel {
+  height: 100%;
+  width: 100%;
+  background-color: red;
+}
+
+.current-offers {
+  margin-top: 30px;
+  width: 100%;
+  height: 32%;
+  display: flex;
+  justify-content: center;
+}
+
+#offersCarousel {
+  width: 80%;
   height: 100%;
 }
 
-.offers-carousel-inner {
-  width: 80%;
+#offersCarousel .carousel {
+  height: 100%;
+  width: 100%;
+}
+
+#offersCarousel .carousel-inner {
+  width: 90%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   background-size: cover;
-  border-radius: 10px;
-  height: 100%;
+  display: block;
 }

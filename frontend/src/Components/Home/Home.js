@@ -17,26 +17,49 @@ const Home = () => {
         <div className="current-offers">
           <div
             id="offersCarousel"
-            className="offers-carousel slide"
-            data-bs-interval="5000"
+            class="carousel slide"
             data-bs-ride="carousel"
           >
-            <div className="offers-carousel-inner">
-              <div className="offers-carousel-item active">
-                <img src={gaming} className="d-block w-100" alt="..." />
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src={christmas} class="d-block w-100" alt="..." />
               </div>
-              <div className="offers-carousel-item">
-                <img src={blackfriday} className="d-block w-100" alt="..." />
+              <div class="carousel-item">
+                <img src={gaming} class="d-block w-100" alt="..." />
               </div>
-              <div className="offers-carousel-item">
-                <img src={christmas} className="d-block w-100" alt="..." />
+              <div class="carousel-item">
+                <img src={blackfriday} class="d-block w-100" alt="..." />
               </div>
             </div>
+            <button
+              className="carousel-control-prev"
+              type="button"
+              data-bs-target="#offersCarousel"
+              data-bs-slide="prev"
+            >
+              <span
+                className="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span className="visually-hidden">Previous</span>
+            </button>
+            <button
+              className="carousel-control-next"
+              type="button"
+              data-bs-target="#offersCarousel"
+              data-bs-slide="next"
+            >
+              <span
+                className="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span className="visually-hidden">Next</span>
+            </button>
           </div>
         </div>
         <div
           id="productCarousel"
-          className="carousel slide"
+          className="carousel carousel-dark slide"
           data-bs-ride="carousel"
         >
           <div className="carousel-inner">
@@ -156,32 +179,31 @@ const Home = () => {
               </div>
             </div>
           </div>
+          <button
+            className="carousel-control-prev"
+            type="button"
+            data-bs-target="#productCarousel"
+            data-bs-slide="prev"
+          >
+            <span
+              className="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Previous</span>
+          </button>
+          <button
+            className="carousel-control-next"
+            type="button"
+            data-bs-target="#productCarousel"
+            data-bs-slide="next"
+          >
+            <span
+              className="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Next</span>
+          </button>
         </div>
-
-        <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#productCarousel"
-          data-bs-slide="prev"
-        >
-          <span
-            className="carousel-control-prev-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#productCarousel"
-          data-bs-slide="next"
-        >
-          <span
-            className="carousel-control-next-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Next</span>
-        </button>
       </div>
     </div>
   );
