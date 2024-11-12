@@ -3,6 +3,9 @@ import phoneImage from "../../assets/iPhone.png";
 import monitorImage from "../../assets/monitor.png";
 import tvImage from "../../assets/tv.png";
 import laptopImage from "../../assets/laptop.png";
+import blackfriday from "../../assets/blackfriday.jpg";
+import gaming from "../../assets/gaming.jpg";
+import christmas from "../../assets/christmas.jpg";
 
 import "./Home.css";
 
@@ -11,6 +14,26 @@ const Home = () => {
     <div>
       <Navbar />
       <div className="category-presentation">
+        <div className="current-offers">
+          <div
+            id="offersCarousel"
+            className="offers-carousel slide"
+            data-bs-interval="5000"
+            data-bs-ride="carousel"
+          >
+            <div className="offers-carousel-inner">
+              <div className="offers-carousel-item active">
+                <img src={gaming} className="d-block w-100" alt="..." />
+              </div>
+              <div className="offers-carousel-item">
+                <img src={blackfriday} className="d-block w-100" alt="..." />
+              </div>
+              <div className="offers-carousel-item">
+                <img src={christmas} className="d-block w-100" alt="..." />
+              </div>
+            </div>
+          </div>
+        </div>
         <div
           id="productCarousel"
           className="carousel slide"
@@ -22,12 +45,12 @@ const Home = () => {
                 <div className="card-wrapper">
                   <div className="card">
                     <div className="product-image">
+                      <div className="price-display">12345</div>
                       <img
                         src={phoneImage}
                         className="card-img-top"
                         alt="iPhone"
                       />
-                      <div className="price-display">asd</div>
                     </div>
 
                     <h5 className="card-title">iPhone</h5>
@@ -35,9 +58,11 @@ const Home = () => {
                       Some quick example text to build on the card title and
                       make up the bulk of the card's content.
                     </p>
-                    <a href="/" className="btn btn-primary">
-                      To product
-                    </a>
+                    <div class="button-container">
+                      <button type="button" class="btn btn-outline-dark btn-sm">
+                        {"> See product"}
+                      </button>
+                    </div>
                   </div>
                   <div className="card">
                     <div className="product-image">
