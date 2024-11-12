@@ -1,0 +1,28 @@
+.itemlisting-card {
+  background-color: white;
+  max-height: 200px;
+  width: 95%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  border: 0.1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.itemlisting-card h2 {
+  text-align: left;
+}
+
+.itemlisting-card p {
+  max-height: 50px;
+  overflow: hidden;
+}
+
+.itemlisting-card .img-fluid {
+  width: 200px;
+  height: 200px;
+  padding: 5%;
+}
+
+#cartButton {
+  border-radius: 40px;
+}

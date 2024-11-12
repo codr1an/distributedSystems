@@ -1,50 +1,78 @@
 import Navbar from "../Home/Navbar";
-import "./Products.css";
+import "./ProductsList.css";
 import phoneImage from "../../assets/iPhone.png";
 import Filters from "./Filters";
+import ItemListing from "./ItemListing";
 
 const ProductsList = () => {
   return (
     <div>
       <Navbar />
       <div class="products-page-container">
-        <div class="products-list">
-          <h1>Results</h1>
-          <div class="card mb-3">
-            <div class="row g-1">
-              <div class="col-md-2">
-                <img
-                  src={phoneImage}
-                  class="img-fluid rounded-start"
-                  alt="..."
-                />
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h2 class="card-title">iPhone X</h2>
-                  <p class="card-text">
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
-                  </p>
-                  <div
-                    data-coreui-read-only="true"
-                    data-coreui-toggle="rating"
-                    data-coreui-value="3"
-                  ></div>{" "}
-                  <p class="price">
-                    <big class="text-bold">99,99 euronen</big>
-                  </p>
-                  <button type="button" class="btn btn-warning">
-                    Add to cart
-                  </button>
-                </div>
-              </div>
-            </div>
+        <div class="sorting-bar">
+          <h1>
+            Results for <p4>"iPhone"</p4>
+          </h1>
+          <div class="button">
+            <button
+              id="sortingButton"
+              class="btn btn-secondary btn-sm dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Sort by
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="/products">
+                  Price Ascending
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/products">
+                  Price Descending
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
+        <div class="products-list">
+          <ItemListing
+            title="iPhone"
+            price="999,99"
+            image={phoneImage}
+            description={
+              "hfdjggashnjkma sd sdbasdja sdamsd baksdm, asd asda sda dadm asd asjkdb n,m asjd asdadakhfdjggashnjkma sd sdbasdja sdamsd baksdm, asd asda sda dadm asd asjkdb n,m asjd asdadak "
+            }
+          ></ItemListing>
+          <ItemListing
+            title="iPhone"
+            price="999,99"
+            image={phoneImage}
+            description={
+              "hfdjggashnjkma sd sdbasdja sdamsd baksdm, asd asda sda dadm asd asjkdb n,m asjd asdadakhfdjggashnjkma sd sdbasdja sdamsd baksdm, asd asda sda dadm asd asjkdb n,m asjd asdadak "
+            }
+          ></ItemListing>
+          <ItemListing
+            title="iPhone"
+            price="999,99"
+            image={phoneImage}
+            description={
+              "hfdjggashnjkma sd sdbasdja sdamsd baksdm, asd asda sda dadm asd asjkdb n,m asjd asdadakhfdjggashnjkma sd sdbasdja sdamsd baksdm, asd asda sda dadm asd asjkdb n,m asjd asdadak "
+            }
+          ></ItemListing>
+          <ItemListing
+            title="iPhone"
+            price="999,99"
+            image={phoneImage}
+            description={
+              "hfdjggashnjkma sd sdbasdja sdamsd baksdm, asd asda sda dadm asd asjkdb n,m asjd asdadakhfdjggashnjkma sd sdbasdja sdamsd baksdm, asd asda sda dadm asd asjkdb n,m asjd asdadak "
+            }
+          ></ItemListing>
+        </div>
         <div class="filters">
-          <Filters></Filters>
+          <Filters />
         </div>
       </div>
     </div>

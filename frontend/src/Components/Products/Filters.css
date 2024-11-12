@@ -1,11 +1,32 @@
 .brand-filter {
-  background-color: aqua;
+  padding: 5%;
 }
 
 .price-filter {
-  background-color: yellow;
+  padding: 5%;
 }
 
 .price-text {
-  font-size: 20px;
+  font-size: 26px;
+  margin-top: 5px;
+}
+
+.year-filter {
+  padding: 5%;
+}
+.price-filter h1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-container {
+  padding: 6%;
+  border: 0.1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filters {
+  padding: 1%;
 }

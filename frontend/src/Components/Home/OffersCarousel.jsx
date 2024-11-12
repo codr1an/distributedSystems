@@ -5,7 +5,12 @@ import "./OffersCarousel.css";
 
 const OffersCarousel = () => {
   return (
-    <div id="offersCarousel" className="carousel slide" data-bs-ride="carousel">
+    <div
+      id="offersCarousel"
+      className="carousel slide"
+      data-bs-ride="carousel"
+      data-bs-interval="5000"
+    >
       <div className="carousel-inner">
         <div className="carousel-item active">
           <img src={christmas} className="d-block w-100" alt="Christmas" />
