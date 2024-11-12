@@ -1,0 +1,45 @@
+.products-page-container {
+  height: 94vh;
+  overflow: hidden;
+}
+
+.filters {
+  height: 93vh;
+  width: 20%;
+}
+
+.products-list {
+  height: 93vh;
+  width: 80%;
+  float: right;
+  padding: 1%;
+  overflow: scroll;
+}
+
+.progress {
+  max-width: 100px;
+}
+
+.sorting-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  border: 0.1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#sortingButton {
+  margin-right: 105px;
+  background-color: rgb(228, 228, 228);
+  color: rgb(78, 78, 78);
+}
+
+.sorting-bar h1 {
+  font-size: 20px;
+  margin-left: 1.5%;
+}
+
+.sorting-bar p4 {
+  color: rgb(238, 158, 9);
+}
