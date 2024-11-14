@@ -19,7 +19,11 @@ const ItemListing = ({ image, title, description, price }) => {
             <p className="price">
               <big className="text-bold">{price}</big>
             </p>
-            <button id="cartButton" type="button" className="btn btn-warning">
+            <button
+              id="cartButton"
+              type="button"
+              className="btn btn-warning btn-sm"
+            >
               Add to cart
             </button>
           </div>

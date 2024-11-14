@@ -1,0 +1,52 @@
+#similarProductCard {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: 0 2% 0 2%;
+}
+.similarProductCardContainer p {
+  padding: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  hyphens: auto;
+  color: rgb(17, 65, 77);
+  text-align: center;
+}
+
+#similarProductCard h5 {
+  font-size: large;
+  padding: 0;
+  text-decoration: none;
+  text-align: center;
+}
+.similarProductCardContainer {
+  height: 100%;
+  width: 19%;
+}
+
+.similarProductCardImg {
+  height: 70%;
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.similarProductCardImg img {
+  width: 100%;
+  height: 90%;
+  object-fit: contain;
+  margin-top: 5%;
+}
+
+.product-link {
+  text-decoration: none;
+}
+
+.product-link:hover p {
+  text-decoration: underline;
+  color: orange;
+}
