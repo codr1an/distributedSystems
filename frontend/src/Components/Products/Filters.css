@@ -7,13 +7,14 @@
 }
 
 .price-text {
-  font-size: 26px;
+  font-size: 18px;
   margin-top: 5px;
 }
 
 .year-filter {
   padding: 5%;
 }
+
 .price-filter h1 {
   display: flex;
   justify-content: space-between;
@@ -29,4 +30,8 @@
 
 .filters {
   padding: 1%;
+}
+
+.filter-container h1 {
+  font-size: large;
 }

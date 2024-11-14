@@ -17,6 +17,11 @@
   overflow: hidden;
 }
 
+.itemlisting-card h2 {
+  font-size: larger;
+  margin-top: 1%;
+}
+
 .itemlisting-card .img-fluid {
   width: 200px;
   height: 200px;
@@ -25,4 +30,5 @@
 
 #cartButton {
   border-radius: 40px;
+  font-size: small;
 }
