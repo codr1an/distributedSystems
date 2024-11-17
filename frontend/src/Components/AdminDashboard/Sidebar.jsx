@@ -3,6 +3,10 @@ import "./Sidebar.css";
 const Sidebar = () => {
   return (
     <div className="side-bar">
+      <h1>Dashboard</h1>
+      <button type="button" class="btn btn">
+        <i class="bi bi-speedometer2"> Health checks</i>
+      </button>
       <h1>User Management</h1>
       <button type="button" class="btn btn">
         <i class="bi bi-people"> View Users</i>
