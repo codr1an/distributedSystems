@@ -9,6 +9,9 @@ import ProductPage from "./Components/Products/ProductPage";
 import ShoppingCart from "./Components/ShoppingCart/ShoppingCart";
 import UserProfile from "./Components/Profile/UserProfile";
 import Orders from "./Components/Profile/Orders";
+import AdminDashboard from "./Components/AdminDashboard/AdminDashboard";
+import ViewProducts from "./Components/AdminDashboard/ViewProducts";
+import ViewUsers from "./Components/AdminDashboard/ViewUsers";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 function App() {
@@ -23,6 +26,9 @@ function App() {
         <Route path="/cart" element={<ShoppingCart />} />
         <Route path="/my_profile" element={<UserProfile />} />
         <Route path="/my_orders" element={<Orders />} />
+        <Route path="/service_dashboard" element={<AdminDashboard />} />
+        <Route path="/view_products" element={<ViewProducts />} />
+        <Route path="/view_users" element={<ViewUsers />} />
       </Routes>
     </Router>
   );

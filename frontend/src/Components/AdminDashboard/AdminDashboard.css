@@ -1,0 +1,16 @@
+.admin-dashboard-container {
+  height: 94.1vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.health-checks-container {
+  width: 85%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-top: 40px;
+}
