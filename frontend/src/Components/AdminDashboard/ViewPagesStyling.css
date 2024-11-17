@@ -1,0 +1,55 @@
+.view-container {
+  height: 94.1vh;
+  margin: 0;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.view-wrapper {
+  width: 85%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-top: 40px;
+}
+
+.view-table {
+  width: 80%;
+  height: 100%;
+  border-bottom: 0.1px solid rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#productsTable,
+#usersTable {
+  width: 100%;
+  border: 0.1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.view-title {
+  width: 80%;
+  border-bottom: 0.1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+.view-table::-webkit-scrollbar {
+  width: 8px;
+}
+
+.view-table::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.view-table::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.view-table::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
