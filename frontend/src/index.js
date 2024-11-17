@@ -14,3 +14,6 @@ root.render(
 );
 
 reportWebVitals();
+
+// TODO user side: shopping cart, profile, order view
+// TODO admin side: admin console, orders view, users view, products view, healtchecks
