@@ -1,0 +1,40 @@
+.orders-container {
+  height: 93vh;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.orders-title {
+  width: 80%;
+  font-size: xx-large;
+  border-bottom: 0.1px solid rgba(0, 0, 0, 0.2);
+}
+
+.orders-wrapper {
+  width: 80%;
+  height: 80%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-bottom: 0.1px solid rgba(0, 0, 0, 0.2);
+}
+
+.orders-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.orders-wrapper::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.orders-wrapper::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.orders-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

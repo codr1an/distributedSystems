@@ -1,0 +1,76 @@
+.order-container {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 0.1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.order-overview {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  gap: 50px;
+  background-color: rgb(228, 228, 228);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 40px;
+  align-items: center;
+}
+
+.order-overview h1 {
+  font-size: large;
+  margin-left: 10px;
+}
+
+.order-items {
+  padding: 1%;
+  width: 100%;
+}
+
+.order-items table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.order-items th,
+.order-items td {
+  padding: 10px 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.order-items th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+.order-items td {
+  background-color: #fff;
+}
+
+.order-items th:nth-child(2),
+.order-items td:nth-child(2) {
+  width: 40%;
+}
+
+.order-items th,
+.order-items td {
+  word-wrap: break-word;
+}
+
+.order-items th,
+.order-items td {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.order-items tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.order-items tr:hover {
+  background-color: #e6e6e6;
+}
