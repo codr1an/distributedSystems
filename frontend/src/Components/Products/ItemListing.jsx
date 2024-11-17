@@ -11,11 +11,6 @@ const ItemListing = ({ image, title, description, price }) => {
           <div className="card-body">
             <h2 className="card-title">{title}</h2>
             <p className="card-text">{description}</p>
-            <div
-              data-coreui-read-only="true"
-              data-coreui-toggle="rating"
-              data-coreui-value="3"
-            ></div>
             <p className="price">
               <big className="text-bold">{price}</big>
             </p>

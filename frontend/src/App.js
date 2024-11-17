@@ -6,6 +6,7 @@ import ProductsList from "./Components/Products/ProductsList";
 import LoginForm from "./Components/AuthenticationForms/Login";
 import RegisterForm from "./Components/AuthenticationForms/Register";
 import ProductPage from "./Components/Products/ProductPage";
+import ShoppingCart from "./Components/ShoppingCart/ShoppingCart";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/products" element={<ProductsList />} />
         <Route path="/product" element={<ProductPage />} />
+        <Route path="/cart" element={<ShoppingCart />} />
       </Routes>
     </Router>
   );
