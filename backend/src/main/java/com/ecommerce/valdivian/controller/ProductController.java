@@ -11,27 +11,41 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/products")
 public class ProductController {
     private final ProductRepository productRepository;
 
 
-    @GetMapping("/api/products")
+    @GetMapping
     List<Product> all(){
         return productRepository.findAll();
     }
 
-    @PostMapping("/api/products")
+    @PostMapping
     Product product (@RequestBody Product newProduct){
         return productRepository.save(newProduct);
     }
 
-    @GetMapping("/api/products/{id}")
+    @GetMapping("/{id}")
     Optional<Product> id(@PathVariable Long id){
         return productRepository.findById(id);
     }
 
-    @DeleteMapping("/api/products/{id}")
+    @DeleteMapping("/{id}")
     void deleteProduct(@PathVariable Long id){
         productRepository.deleteById(id);
+    }
+
+    @PutMapping("/{id}")
+    Product updateProduct(@RequestBody Product updatedProduct, @PathVariable Long id) {
+        return productRepository.findById(id)
+                .map(product -> {
+                    product.setName(updatedProduct.getName());
+                    product.setCategory(updatedProduct.getCategory());
+                    product.setPrice(updatedProduct.getPrice());
+                    product.setImageUrl(updatedProduct.getImageUrl());
+                    return productRepository.save(product);
+                })
+                .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
     }
 }

@@ -11,27 +11,42 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/users")
 public class UserController {
     private final UserRepository userRepository;
 
 
-    @GetMapping("/api/users")
+    @GetMapping
     List<User> all(){
         return userRepository.findAll();
     }
 
-    @PostMapping("/api/users")
+    @PostMapping
     User user (@RequestBody User newUser){
         return userRepository.save(newUser);
     }
 
-    @GetMapping("/api/users/{id}")
+    @GetMapping("/{id}")
     Optional<User> id(@PathVariable Long id){
         return userRepository.findById(id);
     }
 
-    @DeleteMapping("/api/users/{id}")
+    @DeleteMapping("/{id}")
     void deleteUser(@PathVariable Long id){
         userRepository.deleteById(id);
     }
+
+    @PutMapping("/{id}")
+    User updateUser(@RequestBody User updatedUser, @PathVariable Long id) {
+        return userRepository.findById(id)
+                .map(user -> {
+                    user.setUsername(updatedUser.getUsername());
+                    user.setPassword(updatedUser.getPassword());
+                    user.setAddress(updatedUser.getAddress());
+                    user.setEmail(updatedUser.getEmail());
+                    return userRepository.save(user);
+                })
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+    }
+
 }
