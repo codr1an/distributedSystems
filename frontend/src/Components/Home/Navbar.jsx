@@ -81,15 +81,9 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <button
-            type="button"
-            class="btn btn-dark"
-            style={{
-              marginRight: 20,
-            }}
-          >
-            <i class="bi bi-cart"> Shopping Cart</i>
-          </button>
+          <a href="/cart" className="btn btn-dark" style={{ marginRight: 20 }}>
+            <i className="bi bi-cart"> Shopping Cart</i>
+          </a>
         </ul>
       </div>
     </nav>

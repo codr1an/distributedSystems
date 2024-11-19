@@ -1,24 +1,40 @@
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import "./ProductPage.css";
 import Navbar from "../Home/Navbar";
-import phoneImg from "../../assets/iPhone.png";
 import SimilarProductCard from "./SimilarProductCard";
-const ProductPage = ({
-  image,
-  titel,
-  price,
-  description,
-  userAdress,
-  userName,
-  estimatedDelivery,
-}) => {
-  image = phoneImg;
-  titel = "iPhone";
-  price = "999,99 €";
-  userAdress = "12345 Musterstadt";
-  userName = "Max Mustermann";
-  description =
-    "ajuhsgduiyasldhaosidh aoisdj asoid aksjdnabs daoisd asdoiash dos asdoihasuid ahsudi uiasdas";
-  estimatedDelivery = "17 November";
+
+const ProductPage = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const [similarProducts, setSimilarProducts] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:8080/api/products/${id}`)
+      .then((response) => response.json())
+      .then((data) => setProduct(data))
+      .catch((error) => console.error("Error fetching product:", error));
+  }, [id]);
+
+  useEffect(() => {
+    if (product) {
+      fetch(`http://localhost:8080/api/products?category=${product.category}`)
+        .then((response) => response.json())
+        .then((data) => {
+          const shuffledProducts = data
+            .filter((item) => item.id !== product.id)
+            .sort(() => 0.5 - Math.random());
+          setSimilarProducts(shuffledProducts.slice(0, 5));
+        })
+        .catch((error) =>
+          console.error("Error fetching similar products:", error)
+        );
+    }
+  }, [product]);
+
+  if (!product) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -26,22 +42,26 @@ const ProductPage = ({
       <div className="product-page-container">
         <div className="product-wrapper">
           <div className="product-img">
-            <img src={image} className="d-block w-100" alt="Christmas" />
+            <img
+              src={product.imageUrl}
+              className="d-block w-100"
+              alt={product.name}
+            />
           </div>
           <div className="product-body">
-            <h1>{titel}</h1>
-            <h2>{price}</h2>
-            <p>{description}</p>
+            <h1>{product.name}</h1>
+            <h2>{product.price} €</h2>
+            <p>{product.description}</p>
           </div>
           <div className="product-price">
             <div className="delivery-info">
-              <h1>{price}</h1>
+              <h1>{product.price} €</h1>
               <h2>Deliver to:</h2>
               <h3>
-                {userName} <br /> {userAdress}
+                Max Mustermann <br /> 12345 Musterstadt
               </h3>
               <h2>Estimated delivery: </h2>
-              <h3>{estimatedDelivery}</h3>
+              <h3>17 November</h3>
             </div>
             <div className="user-actions">
               <input
@@ -55,7 +75,7 @@ const ProductPage = ({
               <button
                 id="productPageCartButton"
                 type="button"
-                class="btn btn-warning btn-sm"
+                className="btn btn-warning btn-sm"
               >
                 Add to cart
               </button>
@@ -63,11 +83,15 @@ const ProductPage = ({
           </div>
         </div>
         <div className="similar-products">
-          <SimilarProductCard />
-          <SimilarProductCard />
-          <SimilarProductCard />
-          <SimilarProductCard />
-          <SimilarProductCard />
+          {similarProducts.map((product) => (
+            <SimilarProductCard
+              key={product.id}
+              image={product.imageUrl}
+              title={product.name}
+              link={`/product/${product.id}`}
+              price={product.price}
+            />
+          ))}
         </div>
       </div>
     </div>

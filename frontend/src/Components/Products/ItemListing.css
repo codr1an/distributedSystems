@@ -1,7 +1,7 @@
 .itemlisting-card {
   background-color: white;
   max-height: 200px;
-  width: 95%;
+  width: 99%;
   border-radius: 10px;
   margin-bottom: 15px;
   border: 0.1px solid rgba(0, 0, 0, 0.2);
@@ -31,4 +31,14 @@
 #cartButton {
   border-radius: 40px;
   font-size: small;
+}
+
+.product-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-title-link:hover {
+  color: orange;
+  text-decoration: underline;
 }
