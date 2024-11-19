@@ -1,5 +1,6 @@
 package com.ecommerce.valdivian.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,4 +9,18 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 public class OrderItem {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JsonBackReference
+    private Order order;
+
+    @ManyToOne
+    private Product product;
+
+    private int quantity;
+
 }
