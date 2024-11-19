@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./ProductCard.css";
 
 const ProductCard = ({ image, title, price, link, description }) => {
@@ -11,13 +12,9 @@ const ProductCard = ({ image, title, price, link, description }) => {
       <h5 className="card-title">{title}</h5>
       <p className="card-text">{description}</p>
       <div className="button-container">
-        <button
-          type="button"
-          className="btn btn-outline-dark btn-sm"
-          href={link}
-        >
+        <Link to={link} className="btn btn-outline-dark btn-sm">
           {"> See product"}
-        </button>
+        </Link>
       </div>
     </div>
   );

@@ -67,6 +67,7 @@ const ProductsList = () => {
                 price={product.price.toFixed(2)}
                 image={product.imageUrl}
                 description={product.description}
+                productId={product.id}
               />
             ))}
           </div>

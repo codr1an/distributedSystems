@@ -34,7 +34,7 @@ const ProductsCarousel = () => {
                   title={product.name}
                   price={product.price.toFixed(2) + "€"}
                   description={product.description}
-                  link="/"
+                  link={`/product/${product.id}`}
                 />
               ))}
             </div>
@@ -50,7 +50,7 @@ const ProductsCarousel = () => {
                   title={product.name}
                   price={product.price.toFixed(2) + "€"}
                   description={product.description}
-                  link="/"
+                  link={`/product/${product.id}`}
                 />
               ))}
             </div>
