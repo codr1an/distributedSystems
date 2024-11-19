@@ -11,6 +11,7 @@
 
 .card p {
   padding: 5%;
+  min-width: 400px;
 }
 
 .product-image {
@@ -35,17 +36,17 @@
 }
 
 .price-display {
-  width: 20%;
-  height: 8%;
+  width: 100px;
+  height: auto;
   position: absolute;
   top: 40%;
   right: 5%;
   background-color: white;
   z-index: 999;
-  padding: 5px;
+  padding: 2px;
   text-align: center;
   font-weight: bolder;
-  font-size: 22px;
+  font-size: 16px;
 }
 
 .button-container {

@@ -1,10 +1,22 @@
+import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import phoneImage from "../../assets/iPhone.png";
-import laptopImage from "../../assets/laptop.png";
-import monitorImage from "../../assets/monitor.png";
-import tvImage from "../../assets/tv.png";
 
 const ProductsCarousel = () => {
+  const [firstPageProducts, setFirstPageProducts] = useState([]);
+  const [secondPageProducts, setSecondPageProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/api/products")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.length >= 6) {
+          const shuffledProducts = [...data].sort(() => 0.5 - Math.random());
+          setFirstPageProducts(shuffledProducts.slice(0, 3));
+          setSecondPageProducts(shuffledProducts.slice(3, 6));
+        }
+      });
+  }, []);
+
   return (
     <div
       id="productCarousel"
@@ -15,43 +27,32 @@ const ProductsCarousel = () => {
         <div className="carousel-item active">
           <div className="slide">
             <div className="card-wrapper">
-              <ProductCard
-                image={phoneImage}
-                title="iPhone"
-                price="12345"
-                link="/"
-              />
-              <ProductCard
-                image={laptopImage}
-                title="Laptop"
-                price="67890"
-                link="/"
-              />
-              <ProductCard
-                image={monitorImage}
-                title="Monitor"
-                price="23456"
-                link="/"
-              />
+              {firstPageProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  image={product.imageUrl}
+                  title={product.name}
+                  price={product.price.toFixed(2) + "€"}
+                  description={product.description}
+                  link="/"
+                />
+              ))}
             </div>
           </div>
         </div>
         <div className="carousel-item">
           <div className="slide">
             <div className="card-wrapper">
-              <ProductCard image={tvImage} title="TV" price="78910" link="/" />
-              <ProductCard
-                image={phoneImage}
-                title="iPhone"
-                price="12345"
-                link="/"
-              />
-              <ProductCard
-                image={laptopImage}
-                title="Laptop"
-                price="67890"
-                link="/"
-              />
+              {secondPageProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  image={product.imageUrl}
+                  title={product.name}
+                  price={product.price.toFixed(2) + "€"}
+                  description={product.description}
+                  link="/"
+                />
+              ))}
             </div>
           </div>
         </div>
