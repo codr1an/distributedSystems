@@ -77,7 +77,7 @@ const ProductPage = () => {
                 type="button"
                 className="btn btn-warning btn-sm"
               >
-                Add to cart
+                Add to shoppingCart
               </button>
             </div>
           </div>

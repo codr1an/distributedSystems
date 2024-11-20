@@ -81,8 +81,8 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <a href="/cart" className="btn btn-dark" style={{ marginRight: 20 }}>
-            <i className="bi bi-cart"> Shopping Cart</i>
+          <a href="/shoppingCart" className="btn btn-dark" style={{ marginRight: 20 }}>
+            <i className="bi bi-shoppingCart"> Shopping Cart</i>
           </a>
         </ul>
       </div>

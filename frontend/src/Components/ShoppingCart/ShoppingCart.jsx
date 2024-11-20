@@ -8,10 +8,10 @@ const ShoppingCart = () => {
   return (
     <div>
       <Navbar />
-      <div className="shopping-cart-container">
-        <div className="shopping-cart-wrapper">
-          <div className="shopping-cart-items">
-            <div className="shopping-cart-title">
+      <div className="shopping-shoppingCart-container">
+        <div className="shopping-shoppingCart-wrapper">
+          <div className="shopping-shoppingCart-items">
+            <div className="shopping-shoppingCart-title">
               <h1>Shopping Cart</h1>
               <h2>Price</h2>
             </div>
@@ -40,7 +40,7 @@ const ShoppingCart = () => {
               description="ajkhasgduijkahsdhbaosiudhasoid hjasiod"
             />
           </div>
-          <div className="shopping-cart-overview">
+          <div className="shopping-shoppingCart-overview">
             <h1>Subtotal: {totalPrice}</h1>
             <button className="place-order-button">Place order</button>
           </div>

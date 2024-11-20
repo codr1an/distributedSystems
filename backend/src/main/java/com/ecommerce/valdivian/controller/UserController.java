@@ -2,7 +2,6 @@ package com.ecommerce.valdivian.controller;
 
 import com.ecommerce.valdivian.dto.UpdateUserDTO;
 import com.ecommerce.valdivian.model.*;
-import com.ecommerce.valdivian.repository.CartRepository;
 import com.ecommerce.valdivian.repository.UserRepository;
 import com.ecommerce.valdivian.service.UserService;
 import jakarta.validation.Valid;
@@ -21,7 +20,6 @@ import java.util.Optional;
 @RequestMapping("/api/users")
 public class UserController {
     private final UserRepository userRepository;
-    private final CartRepository cartRepository;
     private final UserService userService;
 
 
@@ -69,12 +67,6 @@ public class UserController {
         if (optionalUser.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        User user = optionalUser.get();
-        List<Cart> carts = cartRepository.findAllByUser(user);
-        carts.forEach(cart -> cart.setUser(null));
-        cartRepository.saveAll(carts);
-        cartRepository.deleteAllByUser(user);
-        userRepository.deleteById(id);
 
         return ResponseEntity.noContent().build();
     }
