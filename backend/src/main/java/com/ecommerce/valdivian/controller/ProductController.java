@@ -5,6 +5,7 @@ import com.ecommerce.valdivian.model.Product;
 import com.ecommerce.valdivian.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +23,22 @@ public class ProductController {
     @GetMapping
     public List<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+
+    @GetMapping("/filter")
+    public List<Product> getFilteredProducts(
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) String sortField,
+            @RequestParam(defaultValue = "asc") String sortOrder) {
+
+        Sort.Direction direction = Sort.Direction.fromString(sortOrder.toUpperCase());
+        String sortBy = (sortField != null) ? sortField : "id";
+        Sort sort = Sort.by(direction, sortBy);
+        if (category != null) {
+            return productRepository.findByCategory(category, sort);
+        }
+
+        return productRepository.findAll(sort);
     }
 
     @GetMapping("/{id}")

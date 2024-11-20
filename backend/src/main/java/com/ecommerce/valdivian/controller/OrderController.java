@@ -4,12 +4,15 @@ import com.ecommerce.valdivian.model.Cart;
 import com.ecommerce.valdivian.model.Order;
 import com.ecommerce.valdivian.model.User;
 import com.ecommerce.valdivian.repository.CartRepository;
+import com.ecommerce.valdivian.repository.OrderRepository;
 import com.ecommerce.valdivian.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -19,6 +22,19 @@ public class OrderController {
 
     private final OrderService orderService;
     private final CartRepository cartRepository;
+    private final OrderRepository orderRepository;
+
+    @PreAuthorize("hasRole('admin')")
+    @GetMapping("/sort")
+    public List<Order> sortOrders(
+            @RequestParam String sortBy,
+            @RequestParam String direction) {
+
+        Sort.Direction sortDirection = direction.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
+        Sort sort = Sort.by(sortDirection, sortBy);
+
+        return orderRepository.findAll(sort);
+    }
 
     @GetMapping
     public List<Order> getUserOrders(@AuthenticationPrincipal User user) {
