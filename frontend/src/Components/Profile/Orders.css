@@ -38,3 +38,22 @@
 .orders-wrapper::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+.order-items th:nth-child(1),
+.order-items td:nth-child(1) {
+  width: 1%;
+}
+
+.order-items th:nth-child(2),
+.order-items td:nth-child(2) {
+  width: 50%;
+}
+
+.order-items th:nth-child(3),
+.order-items td:nth-child(3) {
+  width: 5%;
+}
+
+.order-items th:nth-child(4),
+.order-items td:nth-child(4) {
+  width: 20%;
+}

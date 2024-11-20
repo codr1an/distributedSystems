@@ -55,12 +55,15 @@ public class UserController {
     }
 
     @PreAuthorize("hasRole('admin')")
-    @GetMapping
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    @GetMapping("/roles")
+    public List<User> getUsersByRole(@RequestParam(defaultValue = "user") String role) {
+        if (role.equalsIgnoreCase("admin")) {
+            throw new IllegalArgumentException("Access to 'admin' users is not allowed.");
+        }
+        return userRepository.findByRole(role);
     }
 
-
+    
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById( @PathVariable Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
@@ -81,11 +84,11 @@ public class UserController {
         if (optionalUser.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
+        userRepository.deleteById(id);
 
         return ResponseEntity.noContent().build();
     }
 
-    @PreAuthorize("hasRole('user')")
     @GetMapping("/me")
     public User getLoggedInUserProfile(@AuthenticationPrincipal User user) {
         return user;

@@ -26,7 +26,7 @@ const ItemListing = ({ image, title, description, price, productId }) => {
               type="button"
               className="btn btn-warning btn-sm"
             >
-              Add to shoppingCart
+              Add to Cart
             </button>
           </div>
         </div>

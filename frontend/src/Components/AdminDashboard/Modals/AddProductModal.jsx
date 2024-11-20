@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { message } from "react-message-popup";
 
 const AddProductModal = ({ showModal, handleClose }) => {
   const [name, setName] = useState("");
@@ -6,9 +7,35 @@ const AddProductModal = ({ showModal, handleClose }) => {
   const [price, setPrice] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
-  const handleSaveProduct = () => {
-    console.log("New Product Added:", { name, description, price, imageUrl });
-    handleClose();
+  const handleSaveProduct = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      message.error("Authorization token is missing.");
+      return;
+    }
+
+    const newProduct = { name, description, price, imageUrl };
+
+    try {
+      const response = await fetch("http://localhost:8080/api/products", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(newProduct),
+      });
+
+      if (response.ok) {
+        message.success("Product added successfully!", 1500);
+        handleClose();
+        window.location.reload();
+      } else {
+        message.error("Failed to add product", 1500);
+      }
+    } catch (error) {
+      message.error("Error", 1500);
+    }
   };
 
   return (

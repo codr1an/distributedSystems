@@ -19,6 +19,9 @@ public class Product {
     private String description;
     private String category;
     private String imageUrl;
+    private String brand;
+    private int modelYear;
     private double price;
+
 
 }

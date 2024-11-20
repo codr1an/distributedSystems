@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { message } from "react-message-popup";
 
-const EditUserModal = ({ user, handleClose }) => {
+const EditUserModal = ({ user, handleClose, refreshUsers }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
@@ -13,9 +14,37 @@ const EditUserModal = ({ user, handleClose }) => {
     }
   }, [user]);
 
-  const handleSaveChanges = () => {
-    console.log("Saved changes:", { name, email, address });
-    handleClose();
+  const handleSaveChanges = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await fetch(
+        `http://localhost:8080/api/users/${user.id}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            address,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        message.success("User details updated successfully", 1500);
+        refreshUsers();
+        handleClose();
+      } else {
+        message.error("Failed to update user details", 1500);
+      }
+    } catch (error) {
+      message.error("Error updating user details", 1500);
+      console.error("Error:", error);
+    }
   };
 
   return (

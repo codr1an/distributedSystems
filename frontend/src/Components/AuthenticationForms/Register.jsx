@@ -1,7 +1,60 @@
+import React, { useState } from "react";
 import "./Forms.css";
 import logo from "../../assets/logo.png";
+import { message } from "react-message-popup";
 
 const Register = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    name: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormData({ ...formData, [id]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { email, name, password, confirmPassword } = formData;
+
+    if (password !== confirmPassword) {
+      message.error("Passwords do not match!", 2000);
+      return;
+    }
+
+    const payload = {
+      email,
+      name,
+      password,
+      address: "",
+    };
+
+    try {
+      const response = await fetch("http://localhost:8080/api/users/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        message.success("Registration successful!", 2000);
+        setFormData({ email: "", name: "", password: "", confirmPassword: "" });
+      } else if (response.status === 409) {
+        message.error("The email address is already registered!", 2000);
+      } else {
+        const errorData = await response.json();
+        message.error(errorData.message || "Registration failed!", 2000);
+      }
+    } catch (error) {
+      message.error("An error occurred while registering!", 2000);
+    }
+  };
+
   return (
     <div className="container">
       <a href="/">
@@ -12,57 +65,64 @@ const Register = () => {
           style={{ marginBottom: 20 }}
         />
       </a>
-      <div class="wrapper">
+      <div className="wrapper">
         <h1>Create account</h1>
-        <form>
-          <div class="form-group" style={{ marginTop: 20 }}>
-            <label for="emailImput">Email address</label>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group" style={{ marginTop: 20 }}>
+            <label htmlFor="email">Email address</label>
             <input
               type="email"
-              class="form-control"
-              id="emailImput"
+              className="form-control"
+              id="email"
               placeholder="Enter email"
+              value={formData.email}
+              onChange={handleInputChange}
             />
           </div>
-          <div class="form-group" style={{ marginTop: 20 }}>
-            <label for="Name">Name</label>
+          <div className="form-group" style={{ marginTop: 20 }}>
+            <label htmlFor="name">Name</label>
             <input
-              type="name"
-              class="form-control"
-              id="nameInput"
+              type="text"
+              className="form-control"
+              id="name"
               placeholder="First and last name"
+              value={formData.name}
+              onChange={handleInputChange}
             />
           </div>
-          <div class="form-group" style={{ marginTop: 20 }}>
-            <label for="passwordInput">Password</label>
+          <div className="form-group" style={{ marginTop: 20 }}>
+            <label htmlFor="password">Password</label>
             <input
               type="password"
-              class="form-control"
-              id="passwordInput"
+              className="form-control"
+              id="password"
               placeholder="Password"
+              value={formData.password}
+              onChange={handleInputChange}
             />
           </div>
-          <div class="form-group" style={{ marginTop: 20 }}>
-            <label for="2ndPasswordInput">Re-enter password</label>
+          <div className="form-group" style={{ marginTop: 20 }}>
+            <label htmlFor="confirmPassword">Re-enter password</label>
             <input
               type="password"
-              class="form-control"
-              id="2ndPasswordInput"
+              className="form-control"
+              id="confirmPassword"
               placeholder="Password"
+              value={formData.confirmPassword}
+              onChange={handleInputChange}
             />
           </div>
           <p>
             <a
               href="/login"
-              class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+              className="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
             >
               Already registered?
             </a>
           </p>
-
           <button
             type="submit"
-            class="btn btn-warning"
+            className="btn btn-warning"
             style={{ marginTop: 20 }}
           >
             Register
