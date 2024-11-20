@@ -1,17 +1,14 @@
 package com.ecommerce.valdivian.controller;
 
 import com.ecommerce.valdivian.model.Cart;
-import com.ecommerce.valdivian.model.CartItem;
-import com.ecommerce.valdivian.model.Product;
+import com.ecommerce.valdivian.model.User;
 import com.ecommerce.valdivian.repository.CartRepository;
 import com.ecommerce.valdivian.repository.ProductRepository;
 import com.ecommerce.valdivian.service.CartService;
-import com.ecommerce.valdivian.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
