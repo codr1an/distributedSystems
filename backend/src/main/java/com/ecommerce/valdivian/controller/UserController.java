@@ -63,7 +63,7 @@ public class UserController {
         return userRepository.findByRole(role);
     }
 
-    
+
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById( @PathVariable Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
