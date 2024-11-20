@@ -1,4 +1,18 @@
+import { Link, useNavigate } from "react-router-dom";
+import { message } from "react-message-popup";
+
 const Navbar = () => {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    message.success("You have been logged out", 1500);
+    navigate("/");
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <a className="navbar-brand" href="/" style={{ marginLeft: 20 }}>
@@ -19,24 +33,24 @@ const Navbar = () => {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto ml-auto">
           <li className="nav-item">
-            <a className="nav-link" href="/">
+            <Link className="nav-link" to="/products?category=phone">
               Phones
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/">
-              Tablets
-            </a>
+            <Link className="nav-link" to="/products?category=tv">
+              Tvs
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/">
+            <Link className="nav-link" to="/products?category=laptop">
               Laptops
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/">
-              Computers
-            </a>
+            <Link className="nav-link" to="/products?category=monitor">
+              Monitors
+            </Link>
           </li>
         </ul>
 
@@ -54,36 +68,58 @@ const Navbar = () => {
         </form>
 
         <ul className="navbar-nav ">
-          <div class="dropdown-center">
+          <div className="dropdown-center">
             <a
-              class="btn btn-dark dropdown-toggle"
+              className="btn btn-dark dropdown-toggle"
               href="/"
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <i class="bi bi-person"> Account</i>
+              <i className="bi bi-person"> Account</i>
             </a>
 
             <ul
-              class="dropdown-menu dropdown-menu-dark"
+              className="dropdown-menu dropdown-menu-dark"
               style={{ marginTop: 10, marginLeft: -20 }}
             >
-              <li>
-                <a class="dropdown-item" href="/login">
-                  Login
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="/register">
-                  Register
-                </a>
-              </li>
+              {token && role === "user" ? (
+                <>
+                  <li>
+                    <Link className="dropdown-item" to="/my_profile">
+                      Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/my_orders">
+                      Orders
+                    </Link>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleLogout}>
+                      Log out
+                    </a>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link className="dropdown-item" to="/login">
+                      Login
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/register">
+                      Register
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
-          <a href="/shoppingCart" className="btn btn-dark" style={{ marginRight: 20 }}>
-            <i className="bi bi-shoppingCart"> Shopping Cart</i>
-          </a>
+          <Link to="/cart" className="btn btn-dark" style={{ marginRight: 20 }}>
+            <i className="bi bi-cart"> Shopping Cart</i>
+          </Link>
         </ul>
       </div>
     </nav>

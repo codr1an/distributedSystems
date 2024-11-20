@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import "./ProductPage.css";
 import Navbar from "../Home/Navbar";
 import SimilarProductCard from "./SimilarProductCard";
+import { message } from "react-message-popup";
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -32,6 +33,32 @@ const ProductPage = () => {
     }
   }, [product]);
 
+  const handleAddToCart = () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      message.error("You must be logged in to add products to the cart.", 1500);
+      return;
+    }
+
+    fetch(`http://localhost:8080/api/cart/product/${product.id}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          message.success("Product added to cart!", 1500);
+        } else {
+          message.error("Failed to add product to cart. Try again!", 1500);
+        }
+      })
+      .catch((error) => {
+        console.error("Error adding product to cart:", error);
+        message.error("Error adding product to cart. Please try again.", 1500);
+      });
+  };
   if (!product) {
     return <div>Loading...</div>;
   }
@@ -64,20 +91,13 @@ const ProductPage = () => {
               <h3>17 November</h3>
             </div>
             <div className="user-actions">
-              <input
-                type="number"
-                id="quantity"
-                name="quantity"
-                min="1"
-                max="30"
-                placeholder="Quantity"
-              />
               <button
                 id="productPageCartButton"
                 type="button"
                 className="btn btn-warning btn-sm"
+                onClick={handleAddToCart}
               >
-                Add to shoppingCart
+                Add to cart
               </button>
             </div>
           </div>

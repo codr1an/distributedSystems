@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { message } from "react-message-popup";
 
 const AddUserModal = ({ showModal, handleClose }) => {
   const [name, setName] = useState("");
@@ -6,9 +7,28 @@ const AddUserModal = ({ showModal, handleClose }) => {
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSaveUser = () => {
-    console.log("New User Added:", { name, email, address, password });
-    handleClose();
+  const handleSaveUser = async () => {
+    const userData = { name, email, address, password };
+
+    try {
+      const response = await fetch("http://localhost:8080/api/users/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+
+      if (response.ok) {
+        message.success("User added successfully!", 1500);
+        handleClose();
+        window.location.reload();
+      } else {
+        message.error("Failed to add user. Please try again.", 1500);
+      }
+    } catch (error) {
+      message.error("An error occurred while adding the user.", 1500);
+    }
   };
 
   return (

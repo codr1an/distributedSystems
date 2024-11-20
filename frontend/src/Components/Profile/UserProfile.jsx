@@ -3,22 +3,48 @@ import Navbar from "../Home/Navbar";
 import user from "../../assets/user.png";
 import "./UserProfile.css";
 import EditProfileForm from "./EditPofileForm";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
   const [userData, setUserData] = useState(null);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const data = {
-        name: "John Doe",
-        eMail: "john.doe@example.com",
-        address: "Musterstr. 1, 1234 Musterstadt",
-      };
-      setUserData(data);
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        navigate("/");
+        return;
+      }
+
+      try {
+        const response = await fetch("http://localhost:8080/api/users/me", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status} ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        setUserData(data);
+      } catch (err) {
+        setError(err.message);
+      }
     };
 
     fetchUserData();
   }, []);
+
+  if (error) {
+    return <div className="error-message">Error: {error}</div>;
+  }
 
   if (!userData) {
     return <div>Loading...</div>;
@@ -31,7 +57,7 @@ const UserProfile = () => {
         <div className="profile-title">My Profile</div>
         <div className="profile-wrapper">
           <div className="profile-image">
-            <img src={user} alt="/" />
+            <img src={user} alt="User Profile" />
           </div>
           <div className="profile-info">
             <div className="profile-field">

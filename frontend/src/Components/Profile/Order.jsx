@@ -5,8 +5,8 @@ const Order = ({ date, total, deliveryStatus, items }) => {
     <div>
       <div className="order-container">
         <div className="order-overview">
-          <h1>Date: {date}</h1>
-          <h1>Total: {total}</h1>
+          <h1>Date: {new Date(date).toLocaleDateString()}</h1>
+          <h1>Total: {total.toFixed(2)} EUR</h1>
           <h1>Status: {deliveryStatus}</h1>
         </div>
         <div className="order-items">
@@ -23,9 +23,9 @@ const Order = ({ date, total, deliveryStatus, items }) => {
               {items.map((item, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td>{item.name}</td>
+                  <td>{item.product.name}</td>
                   <td>{item.quantity}</td>
-                  <td>{item.price}</td>
+                  <td>{item.totalPrice.toFixed(2)} EUR</td>
                 </tr>
               ))}
             </tbody>

@@ -1,14 +1,45 @@
 import React, { useState } from "react";
+import { message } from "react-message-popup";
 
-const EditProductModal = ({ showModal, handleClose, product }) => {
+const EditProductModal = ({
+  showModal,
+  handleClose,
+  product,
+  fetchProducts,
+}) => {
   const [name, setName] = useState(product?.name || "");
   const [description, setDescription] = useState(product?.description || "");
   const [price, setPrice] = useState(product?.price || "");
   const [imageUrl, setImageUrl] = useState(product?.imageUrl || "");
 
-  const handleSaveChanges = () => {
-    console.log("Updated Product:", { name, description, price, imageUrl });
-    handleClose();
+  const handleSaveChanges = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const updatedProduct = { name, description, price, imageUrl };
+
+      const response = await fetch(
+        `http://localhost:8080/api/products/${product.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(updatedProduct),
+        }
+      );
+
+      if (response.ok) {
+        message.success("Product updated successfully", 1500);
+        fetchProducts();
+        handleClose();
+      } else {
+        message.error("Failed to update product", 1500);
+      }
+    } catch (error) {
+      console.error("Error updating product:", error);
+      message.error("Error updating product", 1500);
+    }
   };
 
   return (
@@ -35,7 +66,7 @@ const EditProductModal = ({ showModal, handleClose, product }) => {
               <form>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">
-                    Titel
+                    Title
                   </label>
                   <input
                     type="text"
@@ -89,7 +120,6 @@ const EditProductModal = ({ showModal, handleClose, product }) => {
               <button
                 type="button"
                 className="btn btn-secondary btn-sm"
-                data-bs-dismiss="modal"
                 onClick={handleClose}
               >
                 Close

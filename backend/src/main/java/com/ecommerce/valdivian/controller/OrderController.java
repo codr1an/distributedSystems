@@ -36,6 +36,18 @@ public class OrderController {
         return orderRepository.findAll(sort);
     }
 
+    @GetMapping("/mine/sort")
+    public List<Order> userSortedOrders(
+            @RequestParam String sortBy,
+            @RequestParam String direction) {
+
+        Sort.Direction sortDirection = direction.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
+        Sort sort = Sort.by(sortDirection, sortBy);
+
+        return orderRepository.findAll(sort);
+    }
+
+
     @GetMapping
     public List<Order> getUserOrders(@AuthenticationPrincipal User user) {
         return orderService.getUserOrders(user);

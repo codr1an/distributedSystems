@@ -8,16 +8,33 @@ const Filters = () => {
   const [priceRange, setPriceRange] = useState({ min: 0, max: 1000 });
 
   useEffect(() => {
-    // api mocking
-    const mockBrands = ["Samsung", "Apple", "Sony", "LG", "Huawei"];
-    const mockYears = [2024, 2023, 2022, 2021, 2020];
-    const mockMinPrice = 100;
-    const mockMaxPrice = 5000;
+    const fetchFilters = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/api/products");
+        const products = await response.json();
+        const uniqueBrands = Array.from(
+          new Set(products.map((product) => product.brand))
+        );
+        setBrands(
+          uniqueBrands.length > 5 ? uniqueBrands.slice(0, 5) : uniqueBrands
+        );
 
-    setBrands(mockBrands);
-    setYears(mockYears);
-    setPriceRange({ min: mockMinPrice, max: mockMaxPrice });
-    setPrice(mockMaxPrice);
+        const uniqueYears = Array.from(
+          new Set(products.map((product) => product.modelYear))
+        );
+        setYears(
+          uniqueYears.length > 5 ? uniqueYears.slice(0, 5) : uniqueYears
+        );
+
+        const prices = products.map((product) => product.price);
+        setPriceRange({ min: Math.min(...prices), max: Math.max(...prices) });
+        setPrice(Math.max(...prices));
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchFilters();
   }, []);
 
   const handlePriceChange = (event) => {

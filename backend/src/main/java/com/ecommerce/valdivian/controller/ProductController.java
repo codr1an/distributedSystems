@@ -1,6 +1,5 @@
 package com.ecommerce.valdivian.controller;
 
-
 import com.ecommerce.valdivian.model.Product;
 import com.ecommerce.valdivian.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,16 +27,30 @@ public class ProductController {
     @GetMapping("/filter")
     public List<Product> getFilteredProducts(
             @RequestParam(required = false) String category,
+            @RequestParam(required = false) String brand,
+            @RequestParam(required = false) Integer modelYear,
+            @RequestParam(required = false) Double minPrice,
+            @RequestParam(required = false) Double maxPrice,
             @RequestParam(required = false) String sortField,
             @RequestParam(defaultValue = "asc") String sortOrder) {
 
         Sort.Direction direction = Sort.Direction.fromString(sortOrder.toUpperCase());
         String sortBy = (sortField != null) ? sortField : "id";
         Sort sort = Sort.by(direction, sortBy);
-        if (category != null) {
+
+        if (category != null && brand != null && modelYear != null && minPrice != null && maxPrice != null) {
             return productRepository.findByCategory(category, sort);
         }
 
+        if (category != null) {
+            return productRepository.findByCategory(category, sort);
+        } else if (brand != null) {
+            return productRepository.findByBrand(brand);
+        } else if (modelYear != null) {
+            return productRepository.findByModelYear(modelYear);
+        } else if (minPrice != null && maxPrice != null) {
+            return productRepository.findByPriceBetween(minPrice, maxPrice);
+        }
         return productRepository.findAll(sort);
     }
 

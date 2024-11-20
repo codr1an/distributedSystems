@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "../Home/Navbar";
 import "./ProductsList.css";
 import Filters from "./Filters";
@@ -7,13 +8,31 @@ import ItemListing from "./ItemListing";
 const ProductsList = () => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [filters, setFilters] = useState({});
   const productsPerPage = 8;
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const category = searchParams.get("category");
+
+  const handleFilterChange = (filter) => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      ...filter,
+    }));
+  };
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/products")
+    let url = `http://localhost:8080/api/products/filter?`;
+    if (category) url += `category=${category}&`;
+
+    if (filters.brand) url += `brand=${filters.brand}&`;
+    if (filters.year) url += `year=${filters.year}&`;
+    if (filters.price) url += `price=${filters.price}&`;
+
+    fetch(url)
       .then((response) => response.json())
       .then((data) => setProducts(data));
-  }, []);
+  }, [category, filters]);
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -32,31 +51,8 @@ const ProductsList = () => {
       <div className="products-page-container">
         <div className="sorting-bar">
           <h1>
-            Results for <span>"iPhone"</span>
+            Results for <span>{category}</span>
           </h1>
-          <div className="button">
-            <button
-              id="sortingButton"
-              className="btn btn-secondary btn-sm dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Sort by
-            </button>
-            <ul className="dropdown-menu">
-              <li>
-                <a className="dropdown-item" href="/products">
-                  Price Ascending
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="/products">
-                  Price Descending
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
         <div className="product-display">
           <div className="products-list">
@@ -89,7 +85,7 @@ const ProductsList = () => {
         </div>
 
         <div className="filters">
-          <Filters />
+          <Filters onFilterChange={handleFilterChange} />
         </div>
       </div>
     </div>

@@ -16,7 +16,6 @@ public class CartItem {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    @JsonIgnoreProperties({"description", "imageUrl", "category"})
     private Product product;
 
     private int quantity;
