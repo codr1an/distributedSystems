@@ -1,4 +1,15 @@
+import { useNavigate } from "react-router-dom";
+
 const AdminNavbar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+
+    navigate("/");
+  };
+
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark bg-dark"
@@ -24,12 +35,13 @@ const AdminNavbar = () => {
       </button>
       <button
         type="button"
-        class="btn btn-dark"
+        className="btn btn-dark"
         style={{
           marginRight: 20,
         }}
+        onClick={handleLogout}
       >
-        <i class="bi bi-box-arrow-in-right"> Log out</i>
+        <i className="bi bi-box-arrow-in-right"> Log out</i>
       </button>
     </nav>
   );

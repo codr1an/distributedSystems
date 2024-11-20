@@ -3,6 +3,7 @@ package com.ecommerce.valdivian.controller;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,11 +35,13 @@ public class HealthCheckController {
         return response;
     }
 
+    @PreAuthorize("hasRole('admin')")
     @GetMapping("/backend")
     public ResponseEntity<Map<String, Object>> checkBackend() {
         return ResponseEntity.ok(buildHealthResponse("UP", "Backend is running."));
     }
 
+    @PreAuthorize("hasRole('admin')")
     @GetMapping("/database")
     public ResponseEntity<Map<String, Object>> checkDatabase() {
         try (Connection connection = dataSource.getConnection()) {
@@ -53,6 +56,7 @@ public class HealthCheckController {
                 .body(buildHealthResponse("DOWN", "Database health check failed."));
     }
 
+    @PreAuthorize("hasRole('admin')")
     @GetMapping("/frontend")
     public ResponseEntity<Map<String, Object>> checkFrontend() {
         try {
@@ -72,7 +76,8 @@ public class HealthCheckController {
                     .body(buildHealthResponse("DOWN", "Frontend health check failed: " + e.getMessage()));
         }
     }
-
+    
+    @PreAuthorize("hasRole('admin')")
     @GetMapping
     public ResponseEntity<Map<String, Object>> checkAll() {
         Map<String, Object> overallStatus = new HashMap<>();
