@@ -35,6 +35,7 @@ public class SecurityConfig {
         http.addFilterBefore(jwtRequestFilter, AuthorizationFilter.class);
         http.authorizeHttpRequests()
                 .requestMatchers("/api/products", "/api/products/{id}", "/api/products/type/{type}","/api/users/register", "/api/users/login", "/swagger-ui" ,"/swagger-ui/**", "/v3/api-docs/**", "/v3/api-docs").permitAll()
+                .requestMatchers("/api/cart/**").authenticated()
                 .anyRequest().authenticated();
         return http.build();
     }

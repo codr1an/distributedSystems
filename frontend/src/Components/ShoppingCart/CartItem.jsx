@@ -2,7 +2,7 @@ import "./CartItem.css";
 
 const CartItem = ({ image, title, price, description, quantity }) => {
   return (
-    <div id="cartItem" className="cart-item-card mb-3">
+    <div id="cartItem" className="shoppingCart-item-card mb-3">
       <div className="row g-1">
         <div className="col-md-2">
           <img src={image} className="img-fluid rounded-start" alt="..." />

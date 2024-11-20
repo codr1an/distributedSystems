@@ -2,11 +2,11 @@ package com.ecommerce.valdivian.controller;
 
 import com.ecommerce.valdivian.dto.UpdateUserDTO;
 import com.ecommerce.valdivian.model.*;
-import com.ecommerce.valdivian.repository.CartRepository;
 import com.ecommerce.valdivian.repository.UserRepository;
 import com.ecommerce.valdivian.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,7 +21,6 @@ import java.util.Optional;
 @RequestMapping("/api/users")
 public class UserController {
     private final UserRepository userRepository;
-    private final CartRepository cartRepository;
     private final UserService userService;
 
 
@@ -40,6 +39,19 @@ public class UserController {
             response.setJwt(jwt);
             return ResponseEntity.ok(response);
         }
+    }
+
+    @PreAuthorize("hasRole('admin')")
+    @GetMapping("/filter")
+    public List<User> getSortedUsers(
+            @RequestParam(required = false) String sortField,
+            @RequestParam(defaultValue = "asc") String sortOrder) {
+
+        Sort.Direction direction = Sort.Direction.fromString(sortOrder.toUpperCase());
+        String sortBy = (sortField != null) ? sortField : "id";
+        Sort sort = Sort.by(direction, sortBy);
+
+        return userRepository.findAll(sort);
     }
 
     @PreAuthorize("hasRole('admin')")
@@ -69,16 +81,11 @@ public class UserController {
         if (optionalUser.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        User user = optionalUser.get();
-        List<Cart> carts = cartRepository.findAllByUser(user);
-        carts.forEach(cart -> cart.setUser(null));
-        cartRepository.saveAll(carts);
-        cartRepository.deleteAllByUser(user);
-        userRepository.deleteById(id);
 
         return ResponseEntity.noContent().build();
     }
 
+    @PreAuthorize("hasRole('user')")
     @GetMapping("/me")
     public User getLoggedInUserProfile(@AuthenticationPrincipal User user) {
         return user;
