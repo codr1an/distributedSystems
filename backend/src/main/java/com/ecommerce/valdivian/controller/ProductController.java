@@ -31,6 +31,7 @@ public class ProductController {
             @RequestParam(required = false) Integer modelYear,
             @RequestParam(required = false) Double minPrice,
             @RequestParam(required = false) Double maxPrice,
+            @RequestParam(required = false) String search, // Added search parameter
             @RequestParam(required = false) String sortField,
             @RequestParam(defaultValue = "asc") String sortOrder) {
 
@@ -38,8 +39,8 @@ public class ProductController {
         String sortBy = (sortField != null) ? sortField : "id";
         Sort sort = Sort.by(direction, sortBy);
 
-        if (category != null && brand != null && modelYear != null && minPrice != null && maxPrice != null) {
-            return productRepository.findByCategory(category, sort);
+        if (search != null && !search.isEmpty()) {
+            return productRepository.searchProductsByKeyword(search, sort);
         }
 
         if (category != null) {
@@ -51,9 +52,9 @@ public class ProductController {
         } else if (minPrice != null && maxPrice != null) {
             return productRepository.findByPriceBetween(minPrice, maxPrice);
         }
+
         return productRepository.findAll(sort);
     }
-
     @GetMapping("/{id}")
     public Optional<Product> getProductById(@PathVariable Long id) {
         return productRepository.findById(id);

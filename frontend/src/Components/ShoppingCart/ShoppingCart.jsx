@@ -66,7 +66,7 @@ const ShoppingCart = () => {
       setCartData(updatedCart);
     } catch (error) {
       setError(error.message);
-      console.error("Error updating quantity:", error); // Log error to console
+      console.error("Error updating quantity:", error);
     }
   };
 

@@ -13,6 +13,7 @@ const ProductsList = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const category = searchParams.get("category");
+  const searchTerm = searchParams.get("search");
 
   const handleFilterChange = (filter) => {
     setFilters((prevFilters) => ({
@@ -23,6 +24,8 @@ const ProductsList = () => {
 
   useEffect(() => {
     let url = `http://localhost:8080/api/products/filter?`;
+
+    if (searchTerm) url += `search=${searchTerm}&`;
     if (category) url += `category=${category}&`;
 
     if (filters.brand) url += `brand=${filters.brand}&`;
@@ -32,7 +35,7 @@ const ProductsList = () => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => setProducts(data));
-  }, [category, filters]);
+  }, [category, filters, searchTerm]);
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -51,7 +54,8 @@ const ProductsList = () => {
       <div className="products-page-container">
         <div className="sorting-bar">
           <h1>
-            Results for <span>{category}</span>
+            Results
+            {searchTerm && <span> for "{searchTerm}"</span>}{" "}
           </h1>
         </div>
         <div className="product-display">
