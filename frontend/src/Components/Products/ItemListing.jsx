@@ -21,13 +21,6 @@ const ItemListing = ({ image, title, description, price, productId }) => {
             <p className="price">
               <big className="text-bold">{price}</big>
             </p>
-            <button
-              id="cartButton"
-              type="button"
-              className="btn btn-warning btn-sm"
-            >
-              Add to Cart
-            </button>
           </div>
         </div>
       </div>

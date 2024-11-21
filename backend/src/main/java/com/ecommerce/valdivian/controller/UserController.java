@@ -77,6 +77,14 @@ public class UserController {
         return userService.updateUser(id, updatedUserDto);
     }
 
+
+    @PutMapping("/me/{id}")
+    public ResponseEntity<User> updateCurrentUser(@AuthenticationPrincipal User user, @PathVariable Long id,
+                                           @Valid @RequestBody UpdateUserDTO updatedUserDto) {
+        return userService.updateUser(id, updatedUserDto);
+    }
+
+
     @PreAuthorize("hasRole('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser( @PathVariable Long id) {

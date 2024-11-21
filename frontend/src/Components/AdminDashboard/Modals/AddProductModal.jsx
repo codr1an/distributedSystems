@@ -6,6 +6,7 @@ const AddProductModal = ({ showModal, handleClose }) => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [category, setCategory] = useState("");
 
   const handleSaveProduct = async () => {
     const token = localStorage.getItem("token");
@@ -14,7 +15,7 @@ const AddProductModal = ({ showModal, handleClose }) => {
       return;
     }
 
-    const newProduct = { name, description, price, imageUrl };
+    const newProduct = { name, description, price, imageUrl, category };
 
     try {
       const response = await fetch("http://localhost:8080/api/products", {
@@ -81,7 +82,7 @@ const AddProductModal = ({ showModal, handleClose }) => {
                     id="description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    maxLength="500"
+                    maxLength="255"
                     style={{ resize: "none" }}
                   />
                 </div>
@@ -108,6 +109,23 @@ const AddProductModal = ({ showModal, handleClose }) => {
                     value={imageUrl}
                     onChange={(e) => setImageUrl(e.target.value)}
                   />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="category" className="form-label">
+                    Category
+                  </label>
+                  <select
+                    className="form-select"
+                    id="category"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                  >
+                    <option value="">Select a category</option>
+                    <option value="phone">Phone</option>
+                    <option value="tv">TV</option>
+                    <option value="laptop">Laptop</option>
+                    <option value="monitor">Monitor</option>
+                  </select>
                 </div>
               </form>
             </div>

@@ -47,7 +47,6 @@ public class OrderController {
         return orderRepository.findAll(sort);
     }
 
-
     @GetMapping
     public List<Order> getUserOrders(@AuthenticationPrincipal User user) {
         return orderService.getUserOrders(user);
@@ -76,4 +75,11 @@ public class OrderController {
     public Order updateOrderStatus(@PathVariable Long orderId, @RequestParam String status) {
         return orderService.updateOrderStatus(orderId, status);
     }
+
+    @PreAuthorize("hasRole('admin')")
+    @DeleteMapping("/{orderId}")
+    public void deleteOrder(@PathVariable Long orderId) {
+        orderService.deleteOrderById(orderId);
+    }
+
 }

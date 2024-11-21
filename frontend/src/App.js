@@ -12,6 +12,7 @@ import Orders from "./Components/Profile/Orders";
 import AdminDashboard from "./Components/AdminDashboard/AdminDashboard";
 import ViewProducts from "./Components/AdminDashboard/ViewProducts";
 import ViewUsers from "./Components/AdminDashboard/ViewUsers";
+import ViewOrders from "./Components/AdminDashboard/ViewOrders";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path="/service_dashboard" element={<AdminDashboard />} />
         <Route path="/view_products" element={<ViewProducts />} />
         <Route path="/view_users" element={<ViewUsers />} />
+        <Route path="/view_orders" element={<ViewOrders />} />
       </Routes>
     </Router>
   );

@@ -77,7 +77,7 @@ const EditUserModal = ({ user, handleClose, refreshUsers }) => {
                     type="text"
                     className="form-control"
                     id="name"
-                    placeholder="Enter your name"
+                    placeholder="Enter the name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                   />
@@ -90,7 +90,7 @@ const EditUserModal = ({ user, handleClose, refreshUsers }) => {
                     type="email"
                     className="form-control"
                     id="email"
-                    placeholder="Enter your email"
+                    placeholder="Enter the email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -103,7 +103,7 @@ const EditUserModal = ({ user, handleClose, refreshUsers }) => {
                     type="text"
                     className="form-control"
                     id="address"
-                    placeholder="Enter your address"
+                    placeholder="Enter the address"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                   />

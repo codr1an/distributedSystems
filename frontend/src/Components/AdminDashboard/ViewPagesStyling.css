@@ -53,3 +53,10 @@
 .view-table::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.select {
+  outline: none;
+  border-radius: 5px;
+  padding: 1%;
+  background-color: white;
+}

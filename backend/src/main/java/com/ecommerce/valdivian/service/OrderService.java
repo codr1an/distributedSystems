@@ -54,4 +54,11 @@ public class OrderService {
         order.setStatus(status);
         return orderRepository.save(order);
     }
+
+    public void deleteOrderById(Long orderId) {
+        orderRepository.findById(orderId).orElseThrow(() -> new IllegalArgumentException("Order not found"));
+        orderRepository.deleteById(orderId);
+    }
+
+
 }
