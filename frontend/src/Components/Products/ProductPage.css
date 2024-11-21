@@ -61,10 +61,12 @@
 .product-price h1 {
   font-size: x-large;
 }
+
 .product-price h2 {
   font-size: large;
   margin-top: 20px;
 }
+
 .product-price h3 {
   font-size: medium;
   color: rgb(82, 100, 204);

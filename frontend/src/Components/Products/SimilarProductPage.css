@@ -4,7 +4,8 @@
   overflow: hidden;
   padding: 0 2% 0 2%;
 }
-.similarProductCardContainer p {
+
+#similarProductCard h6 {
   padding: 0;
   text-align: center;
   display: -webkit-box;
@@ -23,6 +24,7 @@
   text-decoration: none;
   text-align: center;
 }
+
 .similarProductCardContainer {
   height: 100%;
   width: 19%;
@@ -46,7 +48,7 @@
   text-decoration: none;
 }
 
-.product-link:hover p {
+.product-link:hover h6 {
   text-decoration: underline;
   color: orange;
 }
