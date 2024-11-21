@@ -1,0 +1,17 @@
+FROM openjdk:17-jdk-slim
+
+WORKDIR /app
+
+COPY gradlew gradlew.bat /app/
+COPY gradle /app/gradle
+COPY build.gradle /app/
+COPY settings.gradle /app/
+
+COPY src /app/src
+
+RUN chmod +x gradlew
+
+RUN ./gradlew build -x test
+
+
+CMD ["java", "-jar", "build/libs/valdivian-0.0.1-SNAPSHOT.jar"]
