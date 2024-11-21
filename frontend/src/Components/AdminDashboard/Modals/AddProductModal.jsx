@@ -7,6 +7,8 @@ const AddProductModal = ({ showModal, handleClose }) => {
   const [price, setPrice] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [category, setCategory] = useState("");
+  const [brand, setBrand] = useState("");
+  const [modelYear, setModelYear] = useState("");
 
   const handleSaveProduct = async () => {
     const token = localStorage.getItem("token");
@@ -15,7 +17,15 @@ const AddProductModal = ({ showModal, handleClose }) => {
       return;
     }
 
-    const newProduct = { name, description, price, imageUrl, category };
+    const newProduct = {
+      name,
+      description,
+      price,
+      imageUrl,
+      category,
+      brand,
+      modelYear,
+    };
 
     try {
       const response = await fetch("http://localhost:8080/api/products", {
@@ -126,6 +136,30 @@ const AddProductModal = ({ showModal, handleClose }) => {
                     <option value="laptop">Laptop</option>
                     <option value="monitor">Monitor</option>
                   </select>
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="brand" className="form-label">
+                    Brand
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="brand"
+                    value={brand}
+                    onChange={(e) => setBrand(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="modelYear" className="form-label">
+                    Model Year
+                  </label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    id="modelYear"
+                    value={modelYear}
+                    onChange={(e) => setModelYear(e.target.value)}
+                  />
                 </div>
               </form>
             </div>

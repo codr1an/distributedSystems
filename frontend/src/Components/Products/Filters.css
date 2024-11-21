@@ -35,3 +35,8 @@
 .filter-container h1 {
   font-size: large;
 }
+
+#applyFiltersButton {
+  display: block;
+  margin: 0 auto;
+}

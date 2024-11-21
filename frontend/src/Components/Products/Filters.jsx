@@ -95,6 +95,13 @@ const Filters = () => {
           </div>
         ))}
       </div>
+      <button
+        id="applyFiltersButton"
+        type="button"
+        class="btn btn-sm btn-warning"
+      >
+        Apply filters
+      </button>
     </div>
   );
 };

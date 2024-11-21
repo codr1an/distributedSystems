@@ -78,7 +78,7 @@ const ProductsList = () => {
                   key={index + 1}
                   onClick={() => paginate(index + 1)}
                   className={`btn ${
-                    currentPage === index + 1 ? "btn-secondary" : "btn-white"
+                    currentPage === index + 1 ? "btn-warning" : "btn-white"
                   }`}
                 >
                   {index + 1}
