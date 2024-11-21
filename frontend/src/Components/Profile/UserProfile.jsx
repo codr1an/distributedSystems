@@ -3,8 +3,10 @@ import Navbar from "../Home/Navbar";
 import user from "../../assets/user.png";
 import "./UserProfile.css";
 import { useNavigate } from "react-router-dom";
+import useUserAuth from "../Auth/UserAuth";
 
 const UserProfile = () => {
+  useUserAuth();
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();

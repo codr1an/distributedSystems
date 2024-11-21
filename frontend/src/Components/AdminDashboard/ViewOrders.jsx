@@ -4,8 +4,10 @@ import Sidebar from "./Sidebar";
 import "./ViewPagesStyling.css";
 import { Button } from "react-bootstrap";
 import { message } from "react-message-popup";
+import useAdminAuth from "../Auth/AdminAuth";
 
 const ViewOrders = () => {
+  useAdminAuth();
   const [orders, setOrders] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);

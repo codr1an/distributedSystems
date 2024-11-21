@@ -5,8 +5,11 @@ import "./ViewPagesStyling.css";
 import { Button } from "react-bootstrap";
 import EditProductModal from "./Modals/EditProductModal";
 import { message } from "react-message-popup";
+import useAdminAuth from "../Auth/AdminAuth";
 
 const ViewProducts = () => {
+  useAdminAuth();
+
   const [products, setProducts] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);

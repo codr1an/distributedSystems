@@ -5,8 +5,10 @@ import "./ViewPagesStyling.css";
 import { Button } from "react-bootstrap";
 import EditUserModal from "./Modals/EditUserModal";
 import { message } from "react-message-popup";
+import useAdminAuth from "../Auth/AdminAuth";
 
 const ViewUsers = () => {
+  useAdminAuth();
   const [users, setUsers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);

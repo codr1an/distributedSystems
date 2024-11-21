@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import Navbar from "../Home/Navbar";
 import Order from "./Order";
 import "./Orders.css";
+import useUserAuth from "../Auth/UserAuth";
 
 const Orders = () => {
+  useUserAuth();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

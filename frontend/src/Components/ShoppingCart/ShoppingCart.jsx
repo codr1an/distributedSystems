@@ -3,8 +3,10 @@ import Navbar from "../Home/Navbar";
 import "./ShoppingCart.css";
 import CartItem from "./CartItem";
 import { message } from "react-message-popup";
+import useUserAuth from "../Auth/UserAuth";
 
 const ShoppingCart = () => {
+  useUserAuth();
   const [cartData, setCartData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
