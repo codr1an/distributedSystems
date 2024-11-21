@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import Navbar from "../Home/Navbar";
 import user from "../../assets/user.png";
 import "./UserProfile.css";
-import EditProfileForm from "./EditPofileForm";
 import { useNavigate } from "react-router-dom";
+import useUserAuth from "../Auth/UserAuth";
 
 const UserProfile = () => {
+  useUserAuth();
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -64,14 +65,11 @@ const UserProfile = () => {
               <span className="profile-label">Name:</span> {userData.name}
             </div>
             <div className="profile-field">
-              <span className="profile-label">Email:</span> {userData.eMail}
+              <span className="profile-label">Email:</span> {userData.email}
             </div>
             <div className="profile-field">
               <span className="profile-label">Address:</span> {userData.address}
             </div>
-          </div>
-          <div className="profile-options">
-            <EditProfileForm />
           </div>
         </div>
       </div>

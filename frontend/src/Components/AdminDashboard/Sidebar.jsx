@@ -51,7 +51,12 @@ const Sidebar = () => {
       >
         <i className="bi bi-plus-lg"> New Product</i>
       </button>
-
+      <h1>Order Management</h1>
+      <a href="/view_orders">
+        <button id="sideBarButton" type="button" className="btn btn">
+          <i className="bi bi-card-list"> View Orders</i>
+        </button>
+      </a>
       <AddUserModal
         showModal={showUserModal}
         handleClose={handleCloseUserModal}

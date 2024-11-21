@@ -4,11 +4,32 @@ import "./ProductPage.css";
 import Navbar from "../Home/Navbar";
 import SimilarProductCard from "./SimilarProductCard";
 import { message } from "react-message-popup";
+import { useNavigate } from "react-router-dom";
 
 const ProductPage = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [similarProducts, setSimilarProducts] = useState([]);
+  const [user, setUser] = useState(null);
+  const [deliveryDate, setDeliveryDate] = useState("");
+  const [filters, setFilters] = useState({});
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      fetch("http://localhost:8080/api/users/me", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => setUser(data))
+        .catch((error) => console.error("Error fetching user data:", error));
+    }
+  }, []);
 
   useEffect(() => {
     fetch(`http://localhost:8080/api/products/${id}`)
@@ -19,7 +40,9 @@ const ProductPage = () => {
 
   useEffect(() => {
     if (product) {
-      fetch(`http://localhost:8080/api/products?category=${product.category}`)
+      const url = `http://localhost:8080/api/products/filter?category=${product.category}`;
+
+      fetch(url)
         .then((response) => response.json())
         .then((data) => {
           const shuffledProducts = data
@@ -33,10 +56,16 @@ const ProductPage = () => {
     }
   }, [product]);
 
+  useEffect(() => {
+    const currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() + 3);
+    setDeliveryDate(currentDate.toLocaleDateString());
+  }, []);
+
   const handleAddToCart = () => {
     const token = localStorage.getItem("token");
     if (!token) {
-      message.error("You must be logged in to add products to the cart.", 1500);
+      navigate("/login");
       return;
     }
 
@@ -59,6 +88,7 @@ const ProductPage = () => {
         message.error("Error adding product to cart. Please try again.", 1500);
       });
   };
+
   if (!product) {
     return <div>Loading...</div>;
   }
@@ -84,11 +114,15 @@ const ProductPage = () => {
             <div className="delivery-info">
               <h1>{product.price} €</h1>
               <h2>Deliver to:</h2>
-              <h3>
-                Max Mustermann <br /> 12345 Musterstadt
-              </h3>
+              {user ? (
+                <h3>
+                  {user.name} <br /> {user.address}
+                </h3>
+              ) : (
+                <h3>You must log in</h3>
+              )}
               <h2>Estimated delivery: </h2>
-              <h3>17 November</h3>
+              <h3>{deliveryDate}</h3>
             </div>
             <div className="user-actions">
               <button

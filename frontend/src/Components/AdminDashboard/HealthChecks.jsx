@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import "./HealthChecks.css";
+import useAdminAuth from "../Auth/AdminAuth";
 
 const HealthChecks = () => {
+  useAdminAuth();
   const [healthData, setHealthData] = useState({
     backend: {},
     frontend: {},
@@ -26,7 +28,6 @@ const HealthChecks = () => {
 
         const data = await response.json();
 
-        // Remove the root timestamp and store the component data
         const { timestamp, ...components } = data;
         setHealthData(components);
       } catch (error) {
@@ -34,13 +35,10 @@ const HealthChecks = () => {
       }
     };
 
-    // Fetch health data initially
     fetchHealthData();
 
-    // Set up polling every 1 minute (60,000 ms)
     const intervalId = setInterval(fetchHealthData, 60000);
 
-    // Clean up polling on component unmount
     return () => clearInterval(intervalId);
   }, []);
 

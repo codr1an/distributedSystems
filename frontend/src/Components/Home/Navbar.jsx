@@ -13,6 +13,23 @@ const Navbar = () => {
     navigate("/");
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const searchQuery = e.target.search.value.trim().toLowerCase();
+    const category = new URLSearchParams(window.location.search).get(
+      "category"
+    );
+    const brand = new URLSearchParams(window.location.search).get("brand");
+
+    let searchParams = new URLSearchParams();
+
+    if (category) searchParams.set("category", category);
+    if (brand) searchParams.set("brand", brand);
+    if (searchQuery) searchParams.set("search", searchQuery);
+
+    navigate(`/products?${searchParams.toString()}`);
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <a className="navbar-brand" href="/" style={{ marginLeft: 20 }}>
@@ -54,12 +71,13 @@ const Navbar = () => {
           </li>
         </ul>
 
-        <form className="form-inline d-flex mx-auto">
+        <form className="form-inline d-flex mx-auto" onSubmit={handleSearch}>
           <input
             className="form-control me-2"
             type="search"
             placeholder="Search"
             aria-label="Search"
+            name="search"
             style={{ minWidth: 400 }}
           />
           <button className="btn btn-warning" type="submit">
@@ -67,7 +85,7 @@ const Navbar = () => {
           </button>
         </form>
 
-        <ul className="navbar-nav ">
+        <ul className="navbar-nav">
           <div className="dropdown-center">
             <a
               className="btn btn-dark dropdown-toggle"

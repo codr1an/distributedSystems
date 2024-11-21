@@ -5,8 +5,11 @@ import "./ViewPagesStyling.css";
 import { Button } from "react-bootstrap";
 import EditProductModal from "./Modals/EditProductModal";
 import { message } from "react-message-popup";
+import useAdminAuth from "../Auth/AdminAuth";
 
 const ViewProducts = () => {
+  useAdminAuth();
+
   const [products, setProducts] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -104,7 +107,7 @@ const ViewProducts = () => {
                   <th scope="col" style={{ width: "10%" }}>
                     Name
                   </th>
-                  <th scope="col" style={{ width: "5%" }}>
+                  <th scope="col" style={{ width: "6%" }}>
                     Price
                   </th>
                   <th scope="col" style={{ width: "50%" }}>
@@ -123,7 +126,7 @@ const ViewProducts = () => {
                   <tr key={product.id}>
                     <th scope="row">{product.id}</th>
                     <td>{product.name}</td>
-                    <td>${product.price}</td>
+                    <td>{product.price} €</td>
                     <td>{product.description}</td>
                     <td>{product.imageUrl}</td>
                     <td className="d-flex justify-content-between">

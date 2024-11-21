@@ -1,10 +1,12 @@
 package com.ecommerce.valdivian.controller;
 
 import com.ecommerce.valdivian.model.Product;
+import com.ecommerce.valdivian.model.ProductSpecifications;
 import com.ecommerce.valdivian.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +33,7 @@ public class ProductController {
             @RequestParam(required = false) Integer modelYear,
             @RequestParam(required = false) Double minPrice,
             @RequestParam(required = false) Double maxPrice,
+            @RequestParam(required = false) String search,
             @RequestParam(required = false) String sortField,
             @RequestParam(defaultValue = "asc") String sortOrder) {
 
@@ -38,20 +41,14 @@ public class ProductController {
         String sortBy = (sortField != null) ? sortField : "id";
         Sort sort = Sort.by(direction, sortBy);
 
-        if (category != null && brand != null && modelYear != null && minPrice != null && maxPrice != null) {
-            return productRepository.findByCategory(category, sort);
-        }
+        Specification<Product> specification = Specification
+                .where(ProductSpecifications.hasBrand(brand))
+                .and(ProductSpecifications.hasCategory(category))
+                .and(ProductSpecifications.hasModelYear(modelYear))
+                .and(ProductSpecifications.hasPriceBetween(minPrice, maxPrice))
+                .and(ProductSpecifications.hasSearchKeyword(search));
 
-        if (category != null) {
-            return productRepository.findByCategory(category, sort);
-        } else if (brand != null) {
-            return productRepository.findByBrand(brand);
-        } else if (modelYear != null) {
-            return productRepository.findByModelYear(modelYear);
-        } else if (minPrice != null && maxPrice != null) {
-            return productRepository.findByPriceBetween(minPrice, maxPrice);
-        }
-        return productRepository.findAll(sort);
+        return productRepository.findAll(specification, sort);
     }
 
     @GetMapping("/{id}")

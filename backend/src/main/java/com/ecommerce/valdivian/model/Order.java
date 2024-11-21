@@ -21,7 +21,7 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties({"name", "password", "email", "address", "role"})
+    @JsonIgnoreProperties({"password", "email", "role"})
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL)

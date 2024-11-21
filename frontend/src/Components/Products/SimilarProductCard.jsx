@@ -9,7 +9,7 @@ const SimilarProductCard = ({ image, title, link, price }) => {
             <img src={image} className="card-img-top" alt={title} />
           </div>
           <h5>{price}</h5>
-          <p className="card-text">{title}</p>
+          <h6>{title}</h6>
         </div>
       </a>
     </div>
